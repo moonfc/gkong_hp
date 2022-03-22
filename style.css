@@ -1,0 +1,630 @@
+# gkong_hp
+@charset "utf-8"
+
+/*common*/
+*, *::before, *::after {
+  box-sizing: border-box;
+  background-color: #000;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+
+  background-color: #000;
+}
+main {
+  overflow: hidden;
+}
+h1, h2,  p {
+  font-family: serif;
+  color: #aaa;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+img {
+  vertical-align: bottom;
+}
+ol, ul { list-style: none;}
+.container {
+  display: flex;
+  margin: 20px auto;
+}
+
+
+/*header*/
+header {
+  box-sizing: border-box;
+  font-family: serif;
+  background-color: rgba(0, 0, 0, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+header h1 {
+  padding-left: 20px;
+  width: 30%;
+  font-size: 30px;
+  background: repeating-linear-gradient(0deg, #B67B03 0.1em, #DAAF08 0.2em, #FEE9A0 0.3em, #DAAF08 0.4em, #B67B03 0.5em);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.header_inner {
+  position: relative;
+  padding: 15px;
+  display: flex;
+}
+.menu {
+  margin-left: auto;
+}
+nav ul {
+  margin: 0;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+}
+nav li {
+  width: 130px;
+  text-align: center;
+  line-height: 60px;
+}
+nav a {
+  width: 130px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+  font-weight: 900;
+  text-decoration: none;
+  line-height: 60px;
+}
+nav a:hover {
+  color: #fff;
+}
+
+/*heroエリア*/
+.hero {
+  position: relative;
+  z-index: 1;
+  height: 765px;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  background-size: cover;
+  overflow: hidden;
+  display: block;
+}
+.hero::before {
+  content: '';
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:-1;
+  width:100%;
+  height: 765px;
+  /*背景画像設定*/
+  background-image: linear-gradient(to bottom, transparent 0%, transparent 30%, rgba(0, 0, 0, 0.9) 100%), url("../pic/studio2.jpg");
+  background-size: cover;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height:765px;
+  background-color: #000;
+  opacity: 0.6;
+}
+
+.hero-content h1{
+  background: repeating-linear-gradient(0deg, #B67B03 0.1em, #DAAF08 0.2em, #FEE9A0 0.3em, #DAAF08 0.4em, #B67B03 0.5em);
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 180px;
+  font-family: sans-serif;
+  opacity: 0.3;
+}
+.hero-content {
+  position: absolute;
+  display: inline-block;
+  padding-top: 275px;
+  padding-left: 100%;
+  white-space: nowrap;
+  animation: animate-banner 50s linear infinite;
+  z-index: 2;
+}
+@keyframes animate-banner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.homelogo {
+  position: absolute;
+  top: 470px;
+  right: 10px;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+/*スクロールダウン全体の場所*/
+.scrolldown1{
+  /*描画位置※位置は適宜調整してください*/
+  position:absolute;
+  left:50%;
+  bottom:5px;
+  /*全体の高さ*/
+  height:50px;
+}
+/*Scrollテキストの描写*/
+.scrolldown1 span{
+  /*描画位置*/
+  position: absolute;
+  left:-21px;
+  top: -15px;
+  /*テキストの形状*/
+  color: #eee;
+  font-size: 1.0rem;
+  letter-spacing: 0.05em;
+}
+/* 線の描写 */
+.scrolldown1::after{
+  content: "";
+  /*描画位置*/
+  position: absolute;
+  top: 0;
+  /*線の形状*/
+  width: 1px;
+  height: 40px;
+  background: #eee;
+  /*線の動き1.4秒かけて動く。永遠にループ*/
+  animation: pathmove 1.4s ease-in-out infinite;
+  opacity:0;
+}
+/*高さ・位置・透過が変化して線が上から下に動く*/
+@keyframes pathmove{
+  0%{
+    height:0;
+    top:0;
+    opacity: 0;
+  }
+  30%{
+    height:30px;
+    opacity: 1;
+  }
+  100%{
+    height:0;
+    top:50px;
+    opacity: 0;
+  }
+}
+
+
+/*aboutエリア*/
+#hoge{
+  position: relative;
+  width:100%;
+  height:900px;
+  text-align: center;
+  z-index: 1;
+}
+#about {
+  z-index: 2;
+}
+#about .img1  {
+  position: absolute;
+  top: 350px;
+  left: 86px;
+  z-index: 3;
+}
+#about .img2  {
+  position: absolute;
+  top: 330px;
+  left: 80px;
+  border-radius: 10px;
+  z-index: 4;
+}
+.aboutText {
+  position: absolute;
+  top: 250px;
+  left: 470px;
+  display: flex;
+  flex-direction: column;
+  z-index: 4;
+}
+.aboutText h2 {
+  font-size: 36px;
+  font-weight: bold;
+  white-space: nowrap;
+  background-image: linear-gradient(0deg, #b8751e 0%, #ffce08 37%, #fefeb2 47%, #fafad6 50%, #fefeb2 53%, #e1ce08 63%, #b8751e 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  padding: 10px 20px;
+  letter-spacing: .05em;
+}
+.aboutText p {
+  font-size: 16px;
+  white-space: nowrap;
+  color: #aaa;
+  background-color: rgba(10, 10, 10, 0.75);
+  padding: 10px 20px;
+  line-height: 2em;
+  letter-spacing: .05em;
+}
+
+
+/*gallery*/
+#gallery {
+  padding-top: 50px;
+}
+
+#gallery h2,h3 {
+  color: #aaa;
+  font-family: 'Raleway', sans-serif;
+  padding: 1em 2em;
+  font-weight: 200;
+  text-align: center;
+}
+#gallery h2 { font-size: 3.5em; }
+#gallery h3 {
+  color: #888;
+  font-size: 24px;
+}
+.gallery-contents ul {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+.gallery-contents li {
+  position: relative;
+  width: 30%;
+}
+
+.list-item img {
+  width: 100%;
+  border-radius: 5px;
+}
+.list-tit{
+  font-size: 40px;
+  background-image: linear-gradient(0deg, #b8751e 0%, #ffce08 37%, #fefeb2 47%, #fafad6 50%, #fefeb2 53%, #e1ce08 63%, #b8751e 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+.list-txt {
+  line-height: 1.6;
+  color: #aaa;
+  background-color: rgba(20, 20, 20, 0.8);
+  font-size: 16px;
+  max-width: 340px;
+  padding: 15px;
+  margin-top: 30px;
+  border-radius: 5px;
+  z-index: 4;
+}
+.list-content img{
+  z-index: 5;
+}
+
+/*instagram*/
+.instagram ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+.instagram li {
+  width: 30%;
+}
+.instaText {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.instaText:hover {
+  color: #fff;
+  font-weight: bolder;
+}
+
+
+/*price*/
+#price {
+  padding-top: 200px;
+  color: #aaa;
+}
+#price h2{
+  text-align: center;
+  padding-left: 20px;
+  font-size: 60px;
+  font-family: serif;
+  letter-spacing: 0.2em;
+  background: repeating-linear-gradient(0deg, #B67B03 0.1em, #DAAF08 0.2em, #FEE9A0 0.3em, #DAAF08 0.4em, #B67B03 0.5em);
+  -webkit-background-clip: text;
+  color: transparent;
+  position: relative;
+}
+.price-table {
+  width: 900px;
+  margin: 0 auto;
+}
+.t-price {
+  padding: 40px;
+}
+.w-price {
+  padding: 40px;
+}
+/*料金表*/
+th {
+  padding: 8px 20px;
+}
+td {
+  padding: 5px 25px; /* 上下 左右 */
+}
+
+
+/*Contact*/
+#contact {
+  padding-top: 200px;
+}
+#contact h2{
+  text-align: center;
+  font-size: 60px;
+  font-family: serif;
+  letter-spacing: 0.1em;
+  background: repeating-linear-gradient(0deg, #B67B03 0.1em, #DAAF08 0.2em, #FEE9A0 0.3em, #DAAF08 0.4em, #B67B03 0.5em);
+  -webkit-background-clip: text;
+  color: transparent;
+  position: relative;
+}
+#contact img {
+  width: 400px;
+  padding-left: 30px;
+}
+.contact-contents {
+  width: 900px;
+  margin: 0 auto;
+}
+.contact-contents p {
+  margin-top: 20px;
+  padding: 30px 20px;
+  text-align: right;
+}
+
+.sns-link {
+  padding: 46px 0;
+  z-index: 5;
+}
+
+
+/*アイコンの背景色が変わる*/
+.icon-wrap {
+  margin: 0 20px 63px 20px;
+  width: 28px;
+  line-height: 28px;
+  display: block;
+  color: #fff;
+}
+
+.phone-icon {
+  /* Instagramのアイコンは縦に長い(= 正方形ではない)ので左右のpaddingを少し多めにとる */
+  padding: 5px;
+}
+.instagram-icon {
+  /* Instagramのアイコンは縦に長い(= 正方形ではない)ので左右のpaddingを少し多めにとる */
+  padding: 4px 5.5px;
+}
+.line-icon {
+  /* LINEのアイコンは縦に長い(= 正方形ではない)ので左右のpaddingを少し多めにとる */
+  padding: 4px 5.5px;
+}
+
+.icon-wrap:hover {
+  width: 28px;
+  line-height: 28px;
+  border-radius: 25%; /* 正方形 */
+}
+.icon-wrap:hover.phone-icon {
+  background-color: #f0b106;
+}
+.icon-wrap:hover.instagram-icon {
+  background: -webkit-radial-gradient(32% 106%, circle cover, #ffe17d 0%, #ffcd69 10%, #fa9137 28%, #eb4141 42%, transparent 82%), -webkit-linear-gradient(-45deg, #234bd7 12%, #c33cbe 58%);
+  background: -moz-radial-gradient(32% 106%, circle cover, #ffe17d 0%, #ffcd69 10%, #fa9137 28%, #eb4141 42%, transparent 82%), -moz-linear-gradient(-45deg, #234bd7 12%, #c33cbe 58%);
+  background: -ms-radial-gradient(32% 106%, circle cover, #ffe17d 0%, #ffcd69 10%, #fa9137 28%, #eb4141 42%, transparent 82%), -ms-linear-gradient(-45deg, #234bd7 12%, #c33cbe 58%);
+  background: -o-radial-gradient(32% 106%, circle cover, #ffe17d 0%, #ffcd69 10%, #fa9137 28%, #eb4141 42%, transparent 82%), -o-linear-gradient(-45deg, #234bd7 12%, #c33cbe 58%);
+  background: radial-gradient(circle farthest-corner at 32% 106%, #ffe17d 0%, #ffcd69 10%, #fa9137 28%, #eb4141 42%, transparent 82%), linear-gradient(135deg, #234bd7 12%, #c33cbe 58%);
+}
+.icon-wrap:hover.line-icon {
+  background-color: #00B900;
+}
+
+/*Access*/
+#access {
+  padding-top: 200px;
+  color: #aaa;
+}
+#access h2{
+  text-align: center;
+  font-size: 60px;
+  font-family: serif;
+  letter-spacing: 0.2em;
+  background: repeating-linear-gradient(0deg, #B67B03 0.1em, #DAAF08 0.2em, #FEE9A0 0.3em, #DAAF08 0.4em, #B67B03 0.5em);
+  -webkit-background-clip: text;
+  color: transparent;
+  position: relative;
+}
+.access-contents {
+  width: 70%;
+  margin: 60px auto;
+}
+.access-contents h3 {
+  text-align: left;
+  margin: 0;
+  padding: 0 0 8px 40px;
+}
+.access-contents p {
+  padding-left: 40px;
+  padding-bottom: 40px;
+  letter-spacing: .1em;
+  line-height: 2em;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+}
+.access-contents p:hover {
+  color: #fff;
+}
+
+
+.googlemap-bw  {
+  display: block;
+  margin-left: auto;
+}
+.googlemap-bw iframe {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  -webkit-transition: all 0.7s ease;
+  -moz-transition: all 0.7s ease;
+  -o-transition: all 0.7s ease;
+  transition: all  0.7s ease;
+}
+.googlemap-bw iframe:hover {
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  -ms-filter: grayscale(0%);
+  -o-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+.map-hover {
+  background-color: rgba(0, 0, 0, 0.815);
+  width: 400px;
+  height: 300px;
+}
+
+
+/*footer*/
+footer {
+  color: #aaa;
+  padding: 80px 0 20px 0;
+  text-align: center;
+  z-index: 10;
+}
+
+
+@media only screen and (max-width: 859px) {
+  .menu {
+    position: fixed;
+    right: -320px; /* 右から出てくる */
+    top: 0;
+    width: 300px; /* スマホに収まるサイズ */
+    height: 100vh;
+    padding-top: 60px;
+    background-color: #000;
+    transition: all .6s;
+    z-index: 200;
+    overflow-y: auto; /* メニューが多くなったらスクロールできるように */
+  }
+  .hamburger {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    width: 50px; /* クリックしやすい幅 */
+    height: 50px; /* クリックしやすい高さ */
+    cursor: pointer;
+    z-index: 300;
+  }
+  .menu ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .menu li {
+    text-align: center;
+    padding: 0 14px;
+    color: #fff;
+  }
+  .menu li a {
+    display: block;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    text-decoration: none;
+
+  }
+  .menu li a:hover {
+    background-color: rgba(46, 46, 46, 0.884);
+  }
+  .hamburger_border {
+    position: absolute;
+    left: 11px;
+    width: 25px;
+    height: 2px;
+    background-color: #fff;
+    transition: all .6s;
+  }
+  .hamburger_border_top {
+    top: 15px;
+  }
+  .hamburger_border_center {
+    top: 23px;
+  }
+  .hamburger_border_bottom {
+    top: 31px;
+  }
+  .black_bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background-color: #333;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .6s;
+    cursor: pointer;
+  }
+
+  /* 表示された時用のCSS */
+  .menu-open .menu {
+    right: 0;
+  }
+  .menu-open .black_bg {
+    opacity: .8;
+    visibility: visible;
+  }
+  .menu-open .hamburger_border_top {
+    transform: rotate(45deg);
+    top: 20px;
+  }
+  .menu-open .hamburger_border_center {
+    width: 0;
+    left: 50%;
+  }
+  .menu-open .hamburger_border_bottom {
+    transform: rotate(-45deg);
+    top: 20px;
+  }
+}/* sp */
+
+
+
+
+@media screen and (max-width: 959px) {
+
+}
+
+@media screen and (max-width: 600px) {
+}
