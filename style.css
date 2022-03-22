@@ -629,14 +629,14 @@ footer {
 @media screen and (max-width: 600px) {
   #about .img1  {
     position: absolute;
-    top: 350px;
+    top: 300px;
     left: 6px;
     width: 95%;
     z-index: 3;
   }
   #about .img2  {
     position: absolute;
-    top: 330px;
+    top: 280px;
     left: 0px;
     border-radius: 10px;
     width: 95%;
@@ -670,9 +670,11 @@ footer {
     line-height: 2em;
     letter-spacing: .05em;
   }
+  
   .gallery-contents li {
     position: relative;
     width: 100%;
+    padding-left: 0;
   }
 
     /*price*/
