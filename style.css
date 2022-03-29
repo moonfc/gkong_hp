@@ -733,6 +733,7 @@ footer {
   .price-table {
     width: 450px;
     margin: 0 auto;
+    padding-left: 0;
     display: block;
   }
   .t-price {
@@ -809,8 +810,8 @@ footer {
 
   .googlemap-bw  {
     display: block;
-    margin-left: 30px;
-    width: 30%;
+    margin-left: 10px;
+    width: 20%;
   }
   .map-hover {
     background-color: rgba(0, 0, 0, 0.815);
