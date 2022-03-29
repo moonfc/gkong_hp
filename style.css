@@ -625,27 +625,33 @@ footer {
   }
 }/* sp */
 
-
 @media screen and (max-width: 600px) {
+  #hoge{
+    position: relative;
+    width:100%;
+    height:1200px;
+    text-align: center;
+    z-index: 1;
+  }
   #about .img1  {
     position: absolute;
-    top: 220px;
-    left: 6px;
+    top: 170px;
+    left: 16px;
     width: 92%;
     z-index: 3;
   }
   #about .img2  {
     position: absolute;
-    top: 200px;
-    left: 0px;
+    top: 150px;
+    left: 10px;
     border-radius: 10px;
     width: 92%;
     z-index: 4;
   }
   .aboutText {
     position: absolute;
-    top: 450px;
-    left: 0px;
+    top: 500px;
+    left: 10px;
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -663,20 +669,50 @@ footer {
   }
   .aboutText p {
     font-size: 16px;
-    white-space: nowrap;
+    white-space: normal;
     color: #aaa;
     background-color: rgba(10, 10, 10, 0.75);
-    padding: 10px 20px;
+    padding: 10px 0px;
     line-height: 2em;
     letter-spacing: .05em;
   }
   
+  .gallery-contents ul {
+    display: block;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 0;
+  }
   .gallery-contents li {
     position: relative;
-    width: 90%;
-    margin: 0;
-    padding-left: 0;
+    width:90%;
+    margin: 0 auto;
   }
+  .list-item img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  .list-tit{
+    font-size: 40px;
+    background-image: linear-gradient(0deg, #b8751e 0%, #ffce08 37%, #fefeb2 47%, #fafad6 50%, #fefeb2 53%, #e1ce08 63%, #b8751e 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+  }
+  .list-txt {
+    line-height: 1.6;
+    color: #aaa;
+    background-color: rgba(20, 20, 20, 0.8);
+    font-size: 16px;
+    max-width: 360px;
+    width: 95%;
+    padding: 15px;
+    margin-top: 30px;
+    border-radius: 5px;
+    z-index: 4;
+  }
+
 
     /*price*/
   #price {
@@ -712,18 +748,19 @@ footer {
   td {
     padding: 5px 15px; /* 上下 左右 */
   }
-  .container {
-    display: block;
+
+  .w-price td {
+    padding: 5px 32px; 
   }
   
   /*contact*/
   #contact img {
-  width: 400px;
-  padding-left: 0px;
+    display: none;
   }
   .contact-contents {
     width: 900px;
     margin: 0 auto;
+    padding-left: 15px;
   }
   .contact-contents p {
     margin-top: 20px;
@@ -748,13 +785,14 @@ footer {
     position: relative;
   }
   .access-contents {
-    width: 60%;
-    margin: 60px auto;
+    width: 80%;
+    display: block;
+    margin: 60px 0;
   }
   .access-contents h3 {
     text-align: left;
     margin: 0;
-    padding: 0 0 8px 40px;
+    padding: 15px 0 8px 40px;
   }
   .access-contents p {
     padding-left: 40px;
@@ -771,8 +809,8 @@ footer {
 
   .googlemap-bw  {
     display: block;
-    margin-left: auto;
-    width: 80%;
+    margin-left: 30px;
+    width: 50%;
   }
   .map-hover {
     background-color: rgba(0, 0, 0, 0.815);
