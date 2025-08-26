@@ -27,20 +27,17 @@ window.addEventListener('DOMContentLoaded', () => {
       if (!target) return;
 
       e.preventDefault();
-      document.body.classList.remove('menu-open'); // モバイルメニューを閉じる
+      document.body.classList.remove('menu-open');
 
       const rectTop = target.getBoundingClientRect().top;
       const offset = window.pageYOffset + rectTop - headerH;
 
-      window.scrollTo({
-        top: Math.max(0, offset),
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: Math.max(0, offset), behavior: 'smooth' });
     });
   });
 });
 
-// ===== Gallery アコーディオン（スマホのみ）=====
+// ===== Gallery アコーディオン（SPのみ）=====
 (function galleryAccordion(){
   const isMobile = () => window.matchMedia('(max-width: 600px)').matches;
   const items = document.querySelectorAll('.list-item');
@@ -53,7 +50,7 @@ window.addEventListener('DOMContentLoaded', () => {
         content.style.height = '0px';
         content.classList.remove('active');
       } else {
-        content.style.height = 'auto';
+        content.style.height = 'auto';       // ← PCは必ず全開
         content.classList.add('active');
       }
     });
@@ -64,12 +61,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
   items.forEach(item => {
     item.addEventListener('click', () => {
-      if (!isMobile()) return; // PCは常時展開
+      if (!isMobile()) return; // PCはアコーディオン無効
       const content = item.querySelector('.list-content');
       if (!content) return;
 
       const willOpen = !content.classList.contains('active');
-
       if (willOpen) {
         content.classList.add('active');
         content.style.height = content.scrollHeight + 'px';
@@ -149,10 +145,7 @@ window.addEventListener('DOMContentLoaded', () => {
     gsap.fromTo(
       el,
       { y: 50, opacity: 0 },
-      {
-        y: 0, opacity: 1, duration: 1.3,
-        scrollTrigger: { trigger: el, start: 'top 90%', ease: 'expo' }
-      }
+      { y: 0, opacity: 1, duration: 1.3, scrollTrigger: { trigger: el, start: 'top 90%', ease: 'expo' } }
     );
   });
 });
