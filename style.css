@@ -46,24 +46,44 @@ main { padding-top: var(--header-h); }
 .hero::after{ z-index: 1; background-color: #000; opacity: .6; }
 .hero-content{
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: auto;              /* ← 右を固定しない（幅をテキストに合わせる） */
-  display: inline-block;    /* ← shrink-to-fit */
-  white-space: nowrap;
+  left: 0; right: 0; bottom: 0;
+  overflow: hidden;           
   z-index: 3;
+  padding-block: 24px;
+}
+.marquee__track{
+  display: flex;
+  width: max-content;      
+  white-space: nowrap;
   will-change: transform;
-  animation: hero-marquee 40s linear infinite;
+  animation: marquee 40s linear infinite;  
 }
-.hero-content h1{
-  font-size: clamp(48px, 12vw, 180px); font-family: sans-serif; opacity: .3;
+.marquee__text{
+  font-size: clamp(48px, 12vw, 180px);
+  font-family: sans-serif;
+  opacity: .3;
   background: repeating-linear-gradient(0deg,#B67B03 .1em,#DAAF08 .2em,#FEE9A0 .3em,#DAAF08 .4em,#B67B03 .5em);
-  -webkit-background-clip: text; color: transparent;
+  -webkit-background-clip: text;
+  color: transparent;
+  padding-right: clamp(24px, 4vw, 64px);
 }
-@keyframes hero-marquee {
-  from { transform: translateX(100%); }   /* 右の画面外から */
-  to   { transform: translateX(-100%); }  /* 左の画面外まで（テキスト幅ぶん） */
+
+@keyframes marquee{
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* 2連トラックの半分＝“1本分”だけ左へ */
 }
+
+/* 動きを抑制したいユーザー向け */
+@media (prefers-reduced-motion: reduce){
+  .marquee__track{ animation: none; transform: none; }
+}
+/* SR専用見出し（任意） */
+.sr-only{
+  position:absolute!important; width:1px; height:1px;
+  padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0);
+  white-space:nowrap; border:0;
+}
+
 .homelogo{ position: absolute; right: clamp(8px, 2vw, 16px); bottom: clamp(48px, 8vh, 120px); z-index: 0; opacity: .25; filter: grayscale(100%); pointer-events: none; }
 .homelogo img{ width: clamp(140px, 22vw, 280px); }
 
