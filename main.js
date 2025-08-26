@@ -27,9 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
       if (!target) return;
 
       e.preventDefault();
-
-      // モバイルメニューは閉じる
-      document.body.classList.remove('menu-open');
+      document.body.classList.remove('menu-open'); // モバイルメニューを閉じる
 
       const rectTop = target.getBoundingClientRect().top;
       const offset = window.pageYOffset + rectTop - headerH;
