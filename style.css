@@ -28,8 +28,6 @@ header { position: fixed; inset: 0 0 auto 0; height: var(--header-h); z-index: 1
 .menu nav ul { display: flex; align-items: center; gap: 8px; }
 nav a { display: inline-block; padding: 10px 14px; color: rgba(255,255,255,.6); font-size: 16px; font-weight: 800; }
 nav a:hover { color: #fff; }
-
-/* Mobile menu base (hidden on desktop) */
 .hamburger, .black_bg { display: none; }
 
 /* main spacing */
@@ -46,8 +44,6 @@ main { padding-top: var(--header-h); }
   background-size: cover; background-position: center;
 }
 .hero::after{ z-index: 1; background-color: #000; opacity: .6; }
-
-/* heroのテキストは最前面、homelogoは黒幕の“下”で弱める */
 .hero-content{ position: absolute; inset: auto 0 0 0; padding-block: 24px; white-space: nowrap; z-index: 3; animation: hero-marquee 40s linear infinite; }
 .hero-content h1{
   font-size: clamp(48px, 12vw, 180px); font-family: sans-serif; opacity: .3;
@@ -55,14 +51,7 @@ main { padding-top: var(--header-h); }
   -webkit-background-clip: text; color: transparent;
 }
 @keyframes hero-marquee { to { transform: translateX(-100%); } }
-
-.homelogo{
-  position: absolute; right: clamp(8px, 2vw, 16px); bottom: clamp(48px, 8vh, 120px);
-  z-index: 0;                    /* ← hero::after(1)より下へ */
-  opacity: .25;                  /* ← 主張を弱く */
-  filter: grayscale(100%);
-  pointer-events: none;
-}
+.homelogo{ position: absolute; right: clamp(8px, 2vw, 16px); bottom: clamp(48px, 8vh, 120px); z-index: 0; opacity: .25; filter: grayscale(100%); pointer-events: none; }
 .homelogo img{ width: clamp(140px, 22vw, 280px); }
 
 .scrolldown1{ position:absolute; left:50%; transform: translateX(-50%); bottom: 8px; height:50px; z-index: 3; }
@@ -70,7 +59,7 @@ main { padding-top: var(--header-h); }
 .scrolldown1::after{ content:""; position:absolute; left:50%; transform: translateX(-50%); width:1px; height:40px; background:#eee; animation: pathmove 1.4s ease-in-out infinite; opacity:0; }
 @keyframes pathmove{ 0%{height:0; top:0; opacity:0;} 30%{height:30px; opacity:1;} 100%{height:0; top:50px; opacity:0;} }
 
-/* ===== About (Grid重ね＋particles背面) ===== */
+/* ===== About ===== */
 #about { position: relative; z-index: 1; }
 #hoge { position: relative; }
 #hoge .particles-js-canvas-el{ position:absolute; inset:0; z-index: 0; }
@@ -94,23 +83,30 @@ main { padding-top: var(--header-h); }
   background: rgba(10,10,10,.75); padding: 10px 16px; border-radius: 6px; white-space: normal;
 }
 
-/* ===== Gallery ===== */
+/* ===== Gallery（崩れ対策） ===== */
 #gallery { padding-top: 40px; }
 #gallery h2, #gallery h3 { font-family: 'Raleway', sans-serif; text-align: center; font-weight: 200; margin: 0; padding: .8em 0; }
 #gallery h2 { font-size: clamp(28px, 5vw, 56px); }
 #gallery h3 { color: #888; font-size: clamp(16px, 2.2vw, 24px); }
+
+/* 3カラム→1カラム。最小幅を持たせて崩れ防止 */
 .gallery-contents ul{
-  display:flex; flex-wrap:wrap; gap: clamp(16px, 2.5vw, 24px);
+  --gap: clamp(16px, 2.5vw, 24px);
+  display:flex; flex-wrap:wrap; gap: var(--gap);
   max-width: var(--max); margin: 0 auto; padding-inline: var(--pad);
 }
-.gallery-contents li{ flex: 1 1 calc(33.333% - 16px); min-width: 260px; }
+.gallery-contents li{
+  flex: 1 1 320px;            /* 最小幅320pxを確保 */
+  max-width: calc(33.333% - var(--gap));
+}
 .list-item img{ width:100%; border-radius:5px; }
 .list-tit{
   font-size: clamp(22px, 3.5vw, 40px); white-space: nowrap;
   background-image: linear-gradient(0deg,#b8751e 0%,#ffce08 37%,#fefeb2 47%,#fafad6 50%,#fefeb2 53%,#e1ce08 63%,#b8751e 100%);
   -webkit-background-clip: text; color: transparent;
 }
-.list-content{ transition: height .35s ease; overflow: hidden; }
+/* デフォルトはPCで全開表示にしておく（高さauto） */
+.list-content{ height: auto; overflow: visible; transition: height .3s ease; }
 .list-txt{ line-height:1.7; color:#aaa; background: rgba(20,20,20,.8); font-size:16px; max-width:38ch; padding:14px; margin-top:16px; border-radius:6px; }
 
 /* ===== Instagram ===== */
@@ -119,37 +115,38 @@ main { padding-top: var(--header-h); }
 .instaText{ padding-inline:5px; }
 .instaText:hover{ color:#fff; font-weight:700; }
 
-/* ===== Price ===== */
+/* ===== Price（崩れ対策） ===== */
 #price h2, #contact h2, #access h2{
   text-align:center; font-size: clamp(32px, 6vw, 60px); letter-spacing:.2em;
   background: repeating-linear-gradient(0deg,#B67B03 .1em,#DAAF08 .2em,#FEE9A0 .3em,#DAAF08 .4em,#B67B03 .5em);
   -webkit-background-clip:text; color:transparent;
 }
-.price-table, .contact-contents, .access-contents{
-  max-width: 1000px; margin:0 auto; padding-inline: var(--pad);
-}
-.price-table{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:24px; }
+.price-table{ max-width: 1000px; margin:0 auto; padding-inline: var(--pad);
+  display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:24px; }
 .t-price, .w-price{ padding:24px; background: rgba(20,20,20,.35); border-radius:8px; }
-th, td{ padding:8px 16px; text-align:left; white-space:nowrap; }
 
-/* ===== Contact（行対応の2列＋画像）===== */
+/* テーブルは幅固定・折返し前提で崩れ防止 */
+.price-table table{ width:100%; border-collapse: collapse; table-layout: fixed; }
+.price-table th, .price-table td{
+  padding:10px 12px; text-align:left; vertical-align: top;
+  white-space: normal; word-break: break-word; /* ← nowrap を撤廃 */
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+/* ===== Contact（ラベルとアイコンの行対応）===== */
 #contact img{ width:100%; max-width:400px; }
 .contact-contents{
   display:grid;
   grid-template-columns: 1.2fr min-content 1fr; /* ラベル / アイコン / 画像 */
-  gap: 24px;
-  align-items: start;
+  gap: 24px; align-items: start;
 }
 .contact-labels{ display:grid; gap: 16px; }
-.contact-contents p{ margin:0; padding:0; text-align:right; } /* 行頭を右寄せして矢印⇨と合わせる */
+.contact-contents p{ margin:0; padding:0; text-align:right; }
 .sns-link{
-  display:grid;                /* ← 縦並びに変更（行対応） */
-  grid-auto-rows: minmax(36px, auto);
-  gap: 16px;
-  align-content: start;
-  padding: 0;
+  display:grid; grid-auto-rows: minmax(36px, auto);
+  gap: 16px; align-content: start; padding: 0;
 }
-.icon-wrap{ width:36px; line-height:36px; display:inline-flex; align-items:center; justify-content:center; color:#fff; }
+.icon-wrap{ width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center; color:#fff; }
 .phone-icon{ padding:5px; } .instagram-icon{ padding:4px 5.5px; } .line-icon{ padding:4px 5.5px; }
 .icon-wrap:hover{ border-radius:25%; }
 .icon-wrap:hover.phone-icon{ background:#f0b106; }
@@ -160,9 +157,8 @@ th, td{ padding:8px 16px; text-align:left; white-space:nowrap; }
 .contact-visual{ align-self: start; }
 
 /* ===== Access ===== */
-.access-contents{
-  display:grid; grid-template-columns: 1.2fr 1fr; gap:24px; margin-top: clamp(24px, 6vw, 60px);
-}
+.access-contents{ max-width: 1000px; margin:0 auto; padding-inline: var(--pad);
+  display:grid; grid-template-columns: 1.2fr 1fr; gap:24px; margin-top: clamp(24px, 6vw, 60px); }
 .access-contents h3{ text-align:left; padding:0 0 8px 0; }
 .access-contents p{ letter-spacing:.1em; line-height:2; font-family:'Raleway',sans-serif; font-weight:200; }
 .access-contents p:hover{ color:#fff; }
@@ -195,24 +191,26 @@ footer{ color:#aaa; padding:80px 0 20px; text-align:center; z-index:10; }
 /* ===== Small Mobile (<= 600px) ===== */
 @media (max-width: 600px){
   .hero{ min-height: 65svh; }
-  .homelogo{ opacity: .18; }          /* さらに弱める */
+  .homelogo{ opacity: .18; }
   .homelogo img{ width: clamp(120px, 28vw, 220px); }
 
-  /* About: 画像(行1) → テキスト(行2)に分離 */
+  /* About: 画像→テキスト */
   .about-wrap{ grid-template-columns: 1fr; }
   #about .img1, #about .img2{ grid-row: 1; }
   .aboutText{ grid-column: 1; grid-row: 2; margin-top: clamp(16px, 4vw, 24px); }
 
-  /* Contact: スマホでもラベル/アイコンの2列を維持、画像は下段フルへ */
-  .contact-contents{
-    grid-template-columns: 1fr min-content;
-  }
-  .contact-visual{
-    grid-column: 1 / -1;
-    margin-top: 16px;
-  }
+  /* Gallery: 1カラム固定＆アコーディオン開始高さ0 */
+  .gallery-contents li{ flex: 1 1 100%; max-width: 100%; }
+  .list-content{ height: 0; overflow: hidden; }   /* ← モバイルのみ閉じる */
+  .list-content.active{ height: auto; }           /* JSのauto対応保険 */
 
-  /* そのほか */
+  /* Price: 1カラム */
   .price-table{ grid-template-columns: 1fr; }
+
+  /* Contact: ラベル/アイコン2列維持、画像は下段 */
+  .contact-contents{ grid-template-columns: 1fr min-content; }
+  .contact-visual{ grid-column: 1 / -1; margin-top: 16px; }
+
+  /* Access: 1カラム */
   .access-contents{ grid-template-columns:1fr; }
 }
