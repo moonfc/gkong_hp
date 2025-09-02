@@ -101,42 +101,6 @@ window.addEventListener('load', () => {
   });
 });
 
-// ===== タイポグラフィ（タイプライター）=====
-(function(){
-  function TxtRotate(el, toRotate, period) {
-    this.toRotate = toRotate; this.el = el; this.loopNum = 0;
-    this.period = parseInt(period, 10) || 2000;
-    this.txt = ''; this.isDeleting = false; this.tick();
-  }
-  TxtRotate.prototype.tick = function() {
-    const i = this.loopNum % this.toRotate.length;
-    const fullTxt = this.toRotate[i];
-    this.txt = this.isDeleting ? fullTxt.substring(0, this.txt.length - 1)
-                               : fullTxt.substring(0, this.txt.length + 1);
-    this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
-
-    let delta = 300 - Math.random() * 100;
-    if (this.isDeleting) delta /= 2;
-    if (!this.isDeleting && this.txt === fullTxt) { delta = this.period; this.isDeleting = true; }
-    else if (this.isDeleting && this.txt === '') { this.isDeleting = false; this.loopNum++; delta = 500; }
-
-    setTimeout(() => this.tick(), delta);
-  };
-
-  window.addEventListener('load', () => {
-    const els = document.getElementsByClassName('txt-rotate');
-    for (let i = 0; i < els.length; i++) {
-      const toRotate = els[i].getAttribute('data-rotate');
-      const period = els[i].getAttribute('data-period');
-      if (toRotate) new TxtRotate(els[i], JSON.parse(toRotate), period);
-    }
-    const css = document.createElement('style');
-    css.type = 'text/css';
-    css.innerHTML = '.txt-rotate > .wrap { border-right: 0.08em solid #666 }';
-    document.body.appendChild(css);
-  });
-})();
-
 // ===== スクロール出現アニメ =====
 window.addEventListener('DOMContentLoaded', () => {
   if (!window.gsap || !window.ScrollTrigger) return;
