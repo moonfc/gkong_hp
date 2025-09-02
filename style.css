@@ -101,39 +101,7 @@ main { padding-top: var(--header-h); }
 @keyframes pathmove{ 0%{height:0; top:0; opacity:0;} 30%{height:30px; opacity:1;} 100%{height:0; top:50px; opacity:0;} }
 
 /* ===== About ===== */
-.about-wrap{
-  display: grid;
-  grid-template-columns: minmax(280px, 460px) 1fr;
-  gap: clamp(16px, 3vw, 32px);
-  align-items: start;
-}
-
-/* 画像束（写真＋フレーム） */
-.about-visual{
-  grid-column: 1;
-  grid-row: 1;
-  position: relative;                          /* ← これが基準（絶対配置の親） */
-  margin-top: var(--about-visual-offset);      /* ← まとめて“下げる” */
-}
-.about-visual .img1{ position: relative; z-index: 1; }
-.about-visual .img1 img{ display:block; width:100%; height:auto; border-radius:8px; }
-
-/* 額縁（フレーム）を重ねる：親のサイズにフィットさせる */
-.about-visual .img2{
-  position: absolute !important;               /* 旧ルールを上書き */
-  inset: 0 !important;                         /* 親いっぱいに広げる（親=about-visual） */
-  margin: 0 !important;
-  transform: translate(-3%, -3%);              /* 左上に少しズラす（好みで） */
-  pointer-events: none;
-  opacity: .95;
-  z-index: 2;                                  /* 写真の上にしたい場合 */
-}
-.about-visual .img2 img{
-  display:block;
-  width: 100%;                                 /* 親にフィット（暴走防止） */
-  height: 100%;
-  object-fit: cover;                            /* 額縁の比率が違っても破綻しにくい */
-}
+#about { position: relative; z-index: 1; } #hoge { position: relative; } #hoge .particles-js-canvas-el{ position:absolute; inset:0; z-index: 0; } .about-wrap{ position: relative; z-index: 1; display: grid; grid-template-columns: minmax(260px, 420px) 1fr; gap: clamp(16px, 3vw, 32px); align-items: start; max-width: var(--max); margin-inline: auto; padding-inline: var(--pad); } #about .img1, #about .img2 { grid-column: 1; grid-row: 1; position: relative; } #about .img1 img{ border-radius: 8px; } #about .img2{ pointer-events: none; margin: -3% 0 0 -3%; opacity: .95; } .aboutText{ grid-column: 2; grid-row: 1; display: grid; gap: 12px; } .aboutText h2{ font-size: clamp(24px, 3.2vw, 36px); font-weight: 700; letter-spacing:.05em; background-image: linear-gradient(0deg,#b8751e 0%,#ffce08 37%,#fefeb2 47%,#fafad6 50%,#fefeb2 53%,#e1ce08 63%,#b8751e 100%); -webkit-background-clip: text; color: transparent; } .aboutText p{ font-size: clamp(14px, 1.8vw, 16px); line-height: 1.9; background: rgba(10,10,10,.75); padding: 10px 16px; border-radius: 6px; white-space: normal; }
 
 /* ===== Gallery（崩れ対策） ===== */
 #gallery { padding-top: 40px; }
