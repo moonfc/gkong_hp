@@ -219,6 +219,38 @@ footer{ color:#aaa; padding:80px 0 20px; text-align:center; z-index:10; }
   body.menu-open .hamburger_border_top{ transform:rotate(45deg); top:20px; }
   body.menu-open .hamburger_border_center{ width:0; left:50%; }
   body.menu-open .hamburger_border_bottom{ transform:rotate(-45deg); top:20px; }
+
+  .menu nav ul{
+    display: flex;            /* flexのまま列方向に */
+    flex-direction: column;   /* 縦並び */
+    align-items: stretch;     /* 横幅いっぱいに */
+    gap: 0;                   /* 余白リセット（必要なら増減してOK） */
+    margin: 0;
+    padding: 0;
+  }
+  .menu nav li{ width: 100%; }
+
+  .menu nav a{
+    display: block;           /* クリック領域を横一杯に */
+    width: 100%;
+    padding: 14px 16px;       /* タップしやすい高さ */
+    line-height: 1.6;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+  }
+
+  /* メニューの使い勝手アップ */
+  .menu{
+    box-shadow: -8px 0 24px rgba(0,0,0,.5);
+    -webkit-overflow-scrolling: touch;        /* iOS慣性スクロール */
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); /* 下の安全域 */
+  }
+
+  /* メニュー展開中は背景スクロールを止める */
+  body.menu-open{
+    overflow: hidden;
+    touch-action: none;
+  }
 }
 
 /* ===== Small Mobile (<= 600px) ===== */
