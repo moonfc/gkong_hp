@@ -110,10 +110,10 @@ main { padding-top: var(--header-h); }
   gap: clamp(16px, 3vw, 32px); align-items: start;
   max-width: var(--max); margin-inline: auto; padding-inline: var(--pad);
 }
-#about .img1 img{ border-radius: 8px; }
 .about-visual{ grid-column:1; grid-row:1; position:relative; margin-top: var(--about-visual-offset); }
-.about-visual .img1{ position:relative; }
-.about-visual .img2{ position:absolute; inset:0; transform: translate(-3%, -3%); pointer-events:none; opacity:.95; }
+.about-visual .img1{ position:relative; z-index: 1; }
+.about-visual .img1 img{ display:block; width:100%; border-radius:8px; }
+.about-visual .img2{ position:absolute; inset:0; transform: translate(-3%, -3%); pointer-events:none; opacity:.95; z-index: 2; }
 
 .aboutText{ grid-column: 2; grid-row: 1; display: grid; gap: 12px; }
 .aboutText h2{
