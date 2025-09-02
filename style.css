@@ -28,6 +28,13 @@ header { position: fixed; inset: 0 0 auto 0; height: var(--header-h); z-index: 1
 .menu nav ul { display: flex; align-items: center; gap: 8px; }
 nav a { display: inline-block; padding: 10px 14px; color: rgba(255,255,255,.6); font-size: 16px; font-weight: 800; }
 nav a:hover { color: #fff; }
+/* PCの通常表示：横並び */
+.menu{ position: static; background: transparent; padding-top: 0; height: auto; box-shadow: none; }
+.menu nav ul{ display:flex; flex-direction: row; align-items:center; gap: 8px; margin:0; padding:0; }
+.menu nav li{ width: auto; }
+.menu nav a{ display:inline-block; padding: 10px 14px; line-height: 1.6; border: 0; rgba(255,255,255,.6); font-size: 18px; font-weight: 800; }
+.menu nav a:hover { color: #fff; }
+
 .hamburger, .black_bg { display: none; }
 
 /* main spacing */
@@ -204,54 +211,39 @@ footer{ color:#aaa; padding:80px 0 20px; text-align:center; z-index:10; }
 /* ===== Mobile (<= 859px) ===== */
 @media (max-width: 859px){
   .hamburger{ position:absolute; right:15px; top:8px; width:50px; height:50px; cursor:pointer; z-index:300; display:block; }
-  .hamburger_border{ position:absolute; left:11px; width:25px; height:2px; background:#fff; transition: all .6s; }
+  .hamburger_border{ position:absolute; left:11px; width:25px; height:2px; background:#fff; transition:.6s; }
   .hamburger_border_top{ top:15px; } .hamburger_border_center{ top:23px; } .hamburger_border_bottom{ top:31px; }
-  .black_bg{ position:fixed; left:0; top:0; width:100vw; height:100vh; z-index:100; background:#333; opacity:0; visibility:hidden; transition: all .6s; cursor:pointer; display:block; }
 
-  .menu{ position:fixed; right:-320px; top:0; width:300px; height:100vh; padding-top:60px; background:#000; transition: all .6s; z-index:200; overflow-y:auto; }
-  .menu ul{ display:block; }
-  .menu li{ text-align:center; color:#fff; }
-  .menu li a{ display:block; padding:12px 0; border-bottom:1px solid #eee; }
-  .menu li a:hover{ background: rgba(46,46,46,.88); }
+  .black_bg{
+    position:fixed; inset:0; z-index:100; background:#333;
+    opacity:0; visibility:hidden; transition:.4s; cursor:pointer; display:block;
+  }
 
+  /* オフキャンバス（閉） */
+  .menu{
+    position:fixed; top:0; right:-320px; width:300px; height:100vh;
+    padding-top:60px; background:#000; transition:right .6s; z-index:200;
+    overflow-y:auto; -webkit-overflow-scrolling:touch;
+    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    box-shadow: -8px 0 24px rgba(0,0,0,.5);
+  }
+
+  /* 縦並びに切り替え */
+  .menu nav ul{ display:flex; flex-direction:column; align-items:stretch; gap:0; }
+  .menu nav li{ width:100%; }
+  .menu nav a{ display:block; width:100%; padding:12px 16px; text-align:center; border-bottom:1px solid #eee; }
+
+  /* 開いた状態 */
   body.menu-open .menu{ right:0; }
   body.menu-open .black_bg{ opacity:.8; visibility:visible; }
+  body.menu-open{ overflow:hidden; touch-action:none; } /* 背景スクロール防止（任意） */
+
+  /* ハンバーガー変形（任意） */
   body.menu-open .hamburger_border_top{ transform:rotate(45deg); top:20px; }
   body.menu-open .hamburger_border_center{ width:0; left:50%; }
   body.menu-open .hamburger_border_bottom{ transform:rotate(-45deg); top:20px; }
-
-  .menu nav ul{
-    display: flex;            /* flexのまま列方向に */
-    flex-direction: column;   /* 縦並び */
-    align-items: stretch;     /* 横幅いっぱいに */
-    gap: 0;                   /* 余白リセット（必要なら増減してOK） */
-    margin: 0;
-    padding: 0;
-  }
-  .menu nav li{ width: 100%; }
-
-  .menu nav a{
-    display: block;           /* クリック領域を横一杯に */
-    width: 100%;
-    padding: 14px 16px;       /* タップしやすい高さ */
-    line-height: 1.6;
-    border-bottom: 1px solid #eee;
-    text-align: center;
-  }
-
-  /* メニューの使い勝手アップ */
-  .menu{
-    box-shadow: -8px 0 24px rgba(0,0,0,.5);
-    -webkit-overflow-scrolling: touch;        /* iOS慣性スクロール */
-    padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); /* 下の安全域 */
-  }
-
-  /* メニュー展開中は背景スクロールを止める */
-  body.menu-open{
-    overflow: hidden;
-    touch-action: none;
-  }
 }
+
 
 /* ===== Small Mobile (<= 600px) ===== */
 @media (max-width: 600px){
