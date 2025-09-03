@@ -135,7 +135,7 @@ main { padding-top: var(--header-h); }
 
 /* 画像の重ね（枠＝img2 を写真の上に） */
 .about-wrap .img1{ position: relative; z-index: 1; }
-.about-wrap .img1 img{ display:block; width:100%; height:auto; border-radius:8px; }
+.about-wrap .img1 img{ display:block; width:95%; height:auto; border-radius:8px; }
 
 .about-wrap .img2{
   position: absolute;
