@@ -124,6 +124,7 @@ main { padding-top: var(--header-h); }
 .about-wrap{
   position: relative;       /* 絶対配置の基準 */
   grid-column: 1;
+  margin-top: var(--about-wrap-offset);
   overflow: hidden;
 }
 
