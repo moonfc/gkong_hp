@@ -5,9 +5,9 @@ html { overflow-x: hidden; scroll-behavior: smooth; }
   --header-h: 64px;
   --max: 1200px;
   --pad: clamp(16px, 3vw, 32px);
-  --space: clamp(50px, 8vw, 106px);
+  --space: clamp(40px, 8vw, 96px);
   --about-visual-offset: clamp(16px, 2.5vw, 40px);
-  --about-wrap-offset: clamp(40px, 2.5vw, 64px);
+  --about-wrap-offset: clamp(50px, 2.5vw, 74px);
 }
 body {
   background-color: #000; color: #aaa; font-family: serif; line-height: 1.6;
