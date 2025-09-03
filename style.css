@@ -139,7 +139,7 @@ main { padding-top: var(--header-h); }
 .about-wrap .img1 img{
   display:block; 
   width:100%; 
-  height:auto; 
+  height:100%; 
   transform: scale(0.985);          /* 0.99～0.97 で微調整 */
   transform-origin: center;
   border-radius:8px; 
@@ -148,7 +148,7 @@ main { padding-top: var(--header-h); }
 .about-wrap .img2{
   position: absolute;
   inset: 0;
-  transform: translate(-3%, -3%) scale(1.015);  /* 額縁を少し左上へ（好みで調整） */
+  transform: scale(1.015);  /* 額縁を少し左上へ（好みで調整） */
   transform-origin: center;
   pointer-events: none;
   opacity: .95;
@@ -158,7 +158,7 @@ main { padding-top: var(--header-h); }
   display:block;
   width:100%;
   height:100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .aboutText{ grid-column: 2; grid-row: 1; display: grid; gap: 12px; } 
