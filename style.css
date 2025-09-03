@@ -139,7 +139,7 @@ main { padding-top: var(--header-h); }
   display:block; 
   width:100%; 
   height:auto; 
-  transform: scale(0.975);          /* 0.99～0.97 で微調整 */
+  transform: scale(0.985);          /* 0.99～0.97 で微調整 */
   transform-origin: center;
   border-radius:8px; 
 }
