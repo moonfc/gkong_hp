@@ -147,7 +147,8 @@ main { padding-top: var(--header-h); }
 .about-wrap .img2{
   position: absolute;
   inset: 0;
-  transform: translate(-1%, -3.2%);  /* 額縁を少し左上へ（好みで調整） */
+  transform: translate(-1%, -3.5%) scale(1.015);  /* 額縁を少し左上へ（好みで調整） */
+  transform-origin: center;
   pointer-events: none;
   opacity: .95;
   z-index: 2;                      /* 枠を前面。後ろにしたいなら 0～1 に */
