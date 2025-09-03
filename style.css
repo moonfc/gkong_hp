@@ -7,6 +7,7 @@ html { overflow-x: hidden; scroll-behavior: smooth; }
   --pad: clamp(16px, 3vw, 32px);
   --space: clamp(40px, 8vw, 96px);
   --about-visual-offset: clamp(16px, 2.5vw, 40px);
+  --about-wrap-offset: clamp(16px, 2.5vw, 40px);
 }
 body {
   background-color: #000; color: #aaa; font-family: serif; line-height: 1.6;
@@ -291,10 +292,6 @@ footer{ color:#aaa; padding:80px 0 20px; text-align:center; z-index:10; }
   body.menu-open .hamburger_border_bottom{ transform:rotate(-45deg); top:20px; }
 }
 
-
-@media (min-width: 601px){
-  .about-wrap{ transform: translateY(20px); }
-}
 
 /* ===== Small Mobile (<= 600px) ===== */
 @media (max-width: 600px){
