@@ -104,7 +104,6 @@ main { padding-top: var(--header-h); }
 #about { position: relative; z-index: 1; } 
 #hoge { position: relative; } 
 #hoge .particles-js-canvas-el{ position:absolute; inset:0; z-index: 0; } 
-#about .img1 img{ border-radius: 8px; } 
 /* --- About 横並びレイアウト --- */
 
 /* グリッドの親＝.about-visual に変更（2カラム：左=画像束、右=テキスト） */
@@ -124,6 +123,7 @@ main { padding-top: var(--header-h); }
 .about-wrap{
   position: relative;       /* 絶対配置の基準 */
   grid-column: 1;
+  overflow: hidden;
 }
 
 /* 右カラム：テキスト */
@@ -135,7 +135,14 @@ main { padding-top: var(--header-h); }
 
 /* 画像の重ね（枠＝img2 を写真の上に） */
 .about-wrap .img1{ position: relative; z-index: 1; }
-.about-wrap .img1 img{ display:block; width:95%; height:auto; border-radius:8px; }
+.about-wrap .img1 img{
+  display:block; 
+  width:100%; 
+  height:auto; 
+  transform: scale(0.985);          /* 0.99～0.97 で微調整 */
+  transform-origin: center;
+  border-radius:8px; 
+}
 
 .about-wrap .img2{
   position: absolute;
