@@ -104,10 +104,54 @@ main { padding-top: var(--header-h); }
 #about { position: relative; z-index: 1; } 
 #hoge { position: relative; } 
 #hoge .particles-js-canvas-el{ position:absolute; inset:0; z-index: 0; } 
-.about-wrap{ position: relative; z-index: 1; display: grid; grid-template-columns: minmax(260px, 420px) 1fr; gap: clamp(16px, 3vw, 32px); align-items: start; max-width: var(--max); margin-inline: auto; padding-inline: var(--pad); } 
-#about .img1, #about .img2 { grid-column: 1; grid-row: 1; position: relative; } 
 #about .img1 img{ border-radius: 8px; } 
-#about .img2{ pointer-events: none; margin: -3% 0 0 -3%; opacity: .95; } 
+/* --- About 横並びレイアウト --- */
+
+/* グリッドの親＝.about-visual に変更（2カラム：左=画像束、右=テキスト） */
+.about-visual{
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) 1fr;
+  gap: clamp(16px, 3vw, 32px);
+  align-items: start;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+/* 左カラム：画像束（重ねる用の“箱”） */
+.about-wrap{
+  position: relative;       /* 絶対配置の基準 */
+  grid-column: 1;
+}
+
+/* 右カラム：テキスト */
+.aboutText{
+  grid-column: 2;
+  display: grid;
+  gap: 12px;
+}
+
+/* 画像の重ね（枠＝img2 を写真の上に） */
+.about-wrap .img1{ position: relative; z-index: 1; }
+.about-wrap .img1 img{ display:block; width:100%; height:auto; border-radius:8px; }
+
+.about-wrap .img2{
+  position: absolute;
+  inset: 0;
+  transform: translate(-3%, -3%);  /* 額縁を少し左上へ（好みで調整） */
+  pointer-events: none;
+  opacity: .95;
+  z-index: 2;                      /* 枠を前面。後ろにしたいなら 0～1 に */
+}
+.about-wrap .img2 img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit: cover;
+}
+
 .aboutText{ grid-column: 2; grid-row: 1; display: grid; gap: 12px; } 
 .aboutText h2{ font-size: clamp(24px, 3.2vw, 36px); font-weight: 700; letter-spacing:.05em; background-image: linear-gradient(0deg,#b8751e 0%,#ffce08 37%,#fefeb2 47%,#fafad6 50%,#fefeb2 53%,#e1ce08 63%,#b8751e 100%); -webkit-background-clip: text; color: transparent; } 
 .aboutText p{ font-size: clamp(14px, 1.8vw, 16px); line-height: 1.9; background: rgba(10,10,10,.75); padding: 10px 16px; border-radius: 6px; white-space: normal; }
